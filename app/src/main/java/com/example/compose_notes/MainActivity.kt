@@ -9,6 +9,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -39,8 +40,8 @@ class MainActivity : ComponentActivity() {
     }
 
     @Composable
-    fun NotesApp(noteViewModel: NoteViewModel = viewModel()) {
-        val notesList = noteViewModel.getNoteList()
+    fun NotesApp(noteViewModel: NoteViewModel) {
+        val notesList = noteViewModel.getNoteList().collectAsState().value
         NoteScreen(notes = notesList, onAddNote = {
             noteViewModel.addNote(it)
         }, onRemoveNote = {

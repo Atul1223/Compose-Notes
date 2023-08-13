@@ -28,5 +28,5 @@ class NoteRepository @Inject constructor(
     }
 
     fun getAllNotes(): Flow<List<Note>> =
-        notesDatabaseDao.getNotes().flowOn(Dispatchers.IO).conflate() 
+        notesDatabaseDao.getNotes().flowOn(Dispatchers.IO).conflate()
 }
