@@ -19,7 +19,9 @@ import com.example.compose_notes.model.Note
 import com.example.compose_notes.screen.NoteScreen
 import com.example.compose_notes.screen.NoteViewModel
 import com.example.compose_notes.ui.theme.ComposeNotesTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
