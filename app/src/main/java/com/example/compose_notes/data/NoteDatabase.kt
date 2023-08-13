@@ -11,6 +11,6 @@ import com.example.compose_notes.model.Note
 )
 abstract class NoteDatabase: RoomDatabase() {
 
-    abstract fun NoteDao(): NoteDatabase
+    abstract fun noteDao(): NotesDatabaseDao
 
 }
