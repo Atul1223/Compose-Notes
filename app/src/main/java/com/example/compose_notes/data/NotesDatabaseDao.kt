@@ -1,5 +1,6 @@
 package com.example.compose_notes.data
 
+import androidx.compose.runtime.MutableState
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -7,26 +8,27 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.example.compose_notes.model.Note
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface NotesDatabaseDao{
 
     @Query(value = "SELECT * FROM notes_tbl")
-    fun getNotes(): List<Note>
+    fun getNotes(): Flow<List<Note>>
 
     @Query(value = "SELECT * FROM notes_tbl WHERE id=:id")
-    fun getNoteById(id: String): Note
+    suspend fun getNoteById(id: String): Note
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertNote(note: Note)
+    suspend fun insertNote(note: Note)
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    fun updateNote(note: Note)
+    suspend fun updateNote(note: Note)
 
     @Query(value = "DELETE FROM notes_tbl")
-    fun deleteAllNotes()
+    suspend fun deleteAllNotes()
 
     @Delete
-    fun deleteNote(note: Note)
+    suspend fun deleteNote(note: Note)
 
 }
